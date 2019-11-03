@@ -5,7 +5,7 @@ const {AppContainer} = require('react-hot-loader')
 const {remote} = require('electron')
 const fs = require('fs')
 
-const {useState} = React
+const {useState,useEffect} = React
 
 function App(){
     const [html,setHtml] = useState('')
@@ -31,17 +31,49 @@ function App(){
       renderMarkDownToHtml(content)
     };
 
+    useEffect(()=>{
+      const menus = [
+        {
+          label: "File",
+          submenu: [
+            {
+              label: "open file",
+              click: () => {
+                getFileFromUser()
+              }
+            },
+            {
+              label: "new file",
+              click: () => {
+                console.log("new file");
+              }
+            }
+          ]
+        },
+        {
+          label:'Edit',
+          submenu:[
+            {
+              label:'save md',
+              click:()=>{
+
+              }
+            },
+            {
+              label:'save html',
+              click:()=>{
+
+              }
+            }
+          ]
+        }
+      ];
+      const applicationMenu = remote.Menu.buildFromTemplate(menus);
+      remote.Menu.setApplicationMenu(applicationMenu);
+    },[])
+
     return (
       <div>
-        <section className="controns">
-          <button>New File</button>
-          <button onClick={getFileFromUser}>Open File</button>
-          <button disabled>Save File</button>
-          <button disabled>Revert</button>
-          <button>Save-Html</button>
-          <button disabled>Show File</button>
-          <button disabled>Open in Default Application</button>
-        </section>
         <section className="content">
           <label htmlFor="markdown" hidden>
             Markdown Content
