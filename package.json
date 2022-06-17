@@ -6,7 +6,7 @@
   "author": "Steve Kinney <hello@stevekinney.net> (http://stevekinney.net)",
   "license": "MIT",
   "dependencies": {
-    "electron": "7.0.1",
+    "electron": "15.5.5",
     "electron-prebuilt-compile": "4.0.0",
     "marked": "^0.3.12",
     "react": "^16.11.0",
